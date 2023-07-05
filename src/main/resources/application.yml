@@ -1,0 +1,17 @@
+spring:
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alvin_mall?useUnicode=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password:  # 你的数据库密码
+
+server:
+  port: 8888
+
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    typeAliasesPackage: org.alvin.pojo

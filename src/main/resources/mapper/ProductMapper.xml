@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.alvin.mapper.ProductMapper">
+
+    <resultMap id="BaseMap" type="product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <result column="num" property="num"/>
+    </resultMap>
+
+    <select id="select" resultMap="BaseMap">
+        select * from product
+    </select>
+
+    <insert id="insert" parameterType="product">
+        INSERT INTO `product` (name,price,num)
+            VALUES (#{name},#{price},#{num})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM `product` WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="product" >
+        UPDATE `product` SET
+            <if test="name!='' and name != null">
+                 name = #{name}
+            </if>
+        <if test="price!='' and price != null">
+             ,price = #{price}
+        </if>
+        <if test="num!='' and num != null">
+             ,num = #{num}
+        </if>
+            WHERE id = #{id}
+    </update>
+
+    <select id="getById" resultMap="BaseMap" parameterType="int">
+        select * from product where id = #{id}
+    </select>
+
+</mapper>
